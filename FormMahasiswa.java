@@ -1,24 +1,29 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
-package juni182026;
+package juli;
+
+import juli.MahasiswaNilai;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author LAB-SI-PC
+ * @author LABSIDOSEN
  */
 public class FormMahasiswa extends javax.swing.JFrame {
-    
-    MahasiswaNilai mahasiswa = new MahasiswaNilai();
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FormMahasiswa.class.getName());
 
+    MahasiswaNilai mahasiswa = new MahasiswaNilai();
+    MahasiswaNilaiController controller;
     /**
      * Creates new form FormMahasiswa
      */
     public FormMahasiswa() {
         initComponents();
+        controller = new MahasiswaNilaiController();
+        tampilData();
         clear();
     }
 
@@ -32,7 +37,7 @@ public class FormMahasiswa extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        txtNIM = new javax.swing.JTextField();
+        txtNim = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtNama = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -40,67 +45,106 @@ public class FormMahasiswa extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtNilaiTugas = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        txtNilaiUts = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtNilaiuts = new javax.swing.JTextField();
-        txtNilaiuas = new javax.swing.JTextField();
+        txtNilaiUas = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtNilaiAngka = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         txtNilaiHuruf = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         btnProses = new javax.swing.JButton();
+        btnSimpan = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        btnCari = new javax.swing.JButton();
+        btnEdit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
         jLabel1.setText("NIM");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(10, 14, 100, 14);
 
-        txtNIM.setText("jTextField1");
+        txtNim.setText("jTextField1");
+        txtNim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNimActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtNim);
+        txtNim.setBounds(114, 11, 200, 20);
 
         jLabel2.setText("Nama");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(10, 40, 100, 14);
 
-        txtNama.setText("jTextField1");
+        txtNama.setText("jTextField2");
+        txtNama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNamaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtNama);
+        txtNama.setBounds(114, 37, 290, 20);
 
         jLabel3.setText("Alamat");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(10, 66, 100, 14);
 
-        txtAlamat.setText("jTextField1");
-        txtAlamat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAlamatActionPerformed(evt);
-            }
-        });
+        txtAlamat.setText("jTextField3");
+        getContentPane().add(txtAlamat);
+        txtAlamat.setBounds(114, 63, 289, 20);
 
         jLabel4.setText("Nilai Tugas");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(10, 92, 51, 14);
 
-        txtNilaiTugas.setText("jTextField1");
+        txtNilaiTugas.setText("jTextField4");
+        txtNilaiTugas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNilaiTugasActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtNilaiTugas);
+        txtNilaiTugas.setBounds(114, 89, 289, 20);
 
         jLabel5.setText("Nilai UTS");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(10, 118, 100, 14);
 
-        jLabel6.setText("Nilai UAS");
+        txtNilaiUts.setText("jTextField5");
+        getContentPane().add(txtNilaiUts);
+        txtNilaiUts.setBounds(114, 115, 289, 20);
 
-        txtNilaiuts.setText("jTextField1");
+        jLabel6.setText("UAS");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(10, 144, 100, 14);
 
-        txtNilaiuas.setText("jTextField1");
+        txtNilaiUas.setText("jTextField6");
+        getContentPane().add(txtNilaiUas);
+        txtNilaiUas.setBounds(114, 141, 289, 20);
 
         jLabel7.setText("Nilai Angka");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(430, 10, 70, 14);
 
-        txtNilaiAngka.setText("jTextField1");
-        txtNilaiAngka.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNilaiAngkaActionPerformed(evt);
-            }
-        });
+        txtNilaiAngka.setText("jTextField7");
+        getContentPane().add(txtNilaiAngka);
+        txtNilaiAngka.setBounds(510, 10, 250, 20);
 
         jLabel8.setText("Nilai Huruf");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(430, 40, 100, 14);
 
-        txtNilaiHuruf.setText("jTextField1");
-        txtNilaiHuruf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNilaiHurufActionPerformed(evt);
-            }
-        });
+        txtNilaiHuruf.setText("jTextField8");
+        getContentPane().add(txtNilaiHuruf);
+        txtNilaiHuruf.setBounds(510, 40, 250, 20);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.setLayout(null);
 
         btnProses.setText("Proses");
         btnProses.addActionListener(new java.awt.event.ActionListener() {
@@ -108,6 +152,20 @@ public class FormMahasiswa extends javax.swing.JFrame {
                 btnProsesActionPerformed(evt);
             }
         });
+        jPanel1.add(btnProses);
+        btnProses.setBounds(50, 10, 65, 23);
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(430, 70, 180, 50);
+
+        btnSimpan.setText("Simpan");
+        btnSimpan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSimpanActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSimpan);
+        btnSimpan.setBounds(10, 180, 90, 23);
 
         btnClear.setText("Clear");
         btnClear.addActionListener(new java.awt.event.ActionListener() {
@@ -115,147 +173,114 @@ public class FormMahasiswa extends javax.swing.JFrame {
                 btnClearActionPerformed(evt);
             }
         });
+        getContentPane().add(btnClear);
+        btnClear.setBounds(200, 180, 90, 23);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnProses)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnClear)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnProses)
-                    .addComponent(btnClear))
-                .addGap(0, 35, Short.MAX_VALUE))
-        );
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtNilaiAngka, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNilaiTugas)
-                            .addComponent(txtAlamat)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNIM, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNama, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNilaiHuruf))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNilaiuts))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNilaiuas)))
-                .addContainerGap(19, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtNIM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNilaiTugas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNilaiuts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNilaiuas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNilaiAngka, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNilaiHuruf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
+            },
+            new String [] {
+                "Nim", "Nama", "Tugas", "UTS", "UAS", "Angka", "Huruf"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
 
-        pack();
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(20, 220, 740, 280);
+
+        btnCari.setText("Cari");
+        btnCari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCariActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCari);
+        btnCari.setBounds(330, 10, 51, 23);
+
+        btnEdit.setText("Edit");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnEdit);
+        btnEdit.setBounds(110, 180, 80, 23);
+
+        setSize(new java.awt.Dimension(801, 556));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNilaiAngkaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNilaiAngkaActionPerformed
+    private void txtNilaiTugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNilaiTugasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNilaiAngkaActionPerformed
+    }//GEN-LAST:event_txtNilaiTugasActionPerformed
 
-    private void txtNilaiHurufActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNilaiHurufActionPerformed
+    private void txtNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNilaiHurufActionPerformed
+    }//GEN-LAST:event_txtNamaActionPerformed
+
+    private void txtNimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNimActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNimActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        // TODO add your handling code here
+        clear();
+    }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnProsesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProsesActionPerformed
         // TODO add your handling code here:
-        mahasiswa.setNIM(txtNIM.getText());
+        mahasiswa.setNim(txtNim.getText());
         mahasiswa.setNama(txtNama.getText());
         mahasiswa.setAlamat(txtAlamat.getText());
         mahasiswa.setTugas(Double.valueOf(txtNilaiTugas.getText()));
-        mahasiswa.setUts(Double.valueOf(txtNilaiuts.getText()));
-        mahasiswa.setUas(Double.valueOf(txtNilaiuas.getText()));
+        mahasiswa.setUts(Double.valueOf(txtNilaiUts.getText()));
+        mahasiswa.setUas(Double.valueOf(txtNilaiUas.getText()));
         txtNilaiAngka.setText(String.valueOf(mahasiswa.getNilaiAngka()));
         txtNilaiHuruf.setText(mahasiswa.getNilaiHuruf());
+        
     }//GEN-LAST:event_btnProsesActionPerformed
 
-    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+    private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
-        txtNIM.setText("");
-        txtNama.setText("");
-        txtAlamat.setText("");
-        txtNilaiTugas.setText("");
-        txtNilaiHuruf.setText("");
-        txtNilaiuas.setText("");
-        txtNilaiuts.setText("");
-        txtNilaiAngka.setText("");
-    }//GEN-LAST:event_btnClearActionPerformed
-    
-    private void txtAlamatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAlamatActionPerformed
+        MahasiswaNilai mhs = new MahasiswaNilai();
+        mhs.setNim(txtNim.getText());
+        mhs.setNama(txtNama.getText());
+        mhs.setAlamat(txtAlamat.getText());
+        mhs.setTugas(Double.parseDouble(txtNilaiTugas.getText()));
+        mhs.setUts(Double.parseDouble(txtNilaiUts.getText()));
+        mhs.setUas(Double.parseDouble(txtNilaiUas.getText()));
+        String pesan = controller.insert(mhs);
+        JOptionPane.showMessageDialog(this, pesan); 
+        tampilData();
+    }//GEN-LAST:event_btnSimpanActionPerformed
+
+    private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtAlamatActionPerformed
+        tampilForm(txtNim.getText()); 
+    }//GEN-LAST:event_btnCariActionPerformed
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        // TODO add your handling code here:
+        MahasiswaNilai mhs = new MahasiswaNilai();
+        mhs.setNim(txtNim.getText());
+        mhs.setNama(txtNama.getText());
+        mhs.setAlamat(txtAlamat.getText());
+        mhs.setTugas(Double.parseDouble(txtNilaiTugas.getText()));
+        mhs.setUts(Double.parseDouble(txtNilaiUts.getText()));
+        mhs.setUas(Double.parseDouble(txtNilaiUas.getText()));
+        String pesan = controller.update(mhs.getNim(), mhs);
+        JOptionPane.showMessageDialog(this, pesan); 
+        tampilData();
+    }//GEN-LAST:event_btnEditActionPerformed
 
     /**
      * @param args the command line arguments
@@ -273,18 +298,31 @@ public class FormMahasiswa extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(FormMahasiswa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(FormMahasiswa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(FormMahasiswa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(FormMahasiswa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new FormMahasiswa().setVisible(true));
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new FormMahasiswa().setVisible(true);
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCari;
     private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnProses;
+    private javax.swing.JButton btnSimpan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -294,23 +332,60 @@ public class FormMahasiswa extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField txtAlamat;
-    private javax.swing.JTextField txtNIM;
     private javax.swing.JTextField txtNama;
     private javax.swing.JTextField txtNilaiAngka;
     private javax.swing.JTextField txtNilaiHuruf;
     private javax.swing.JTextField txtNilaiTugas;
-    private javax.swing.JTextField txtNilaiuas;
-    private javax.swing.JTextField txtNilaiuts;
+    private javax.swing.JTextField txtNilaiUas;
+    private javax.swing.JTextField txtNilaiUts;
+    private javax.swing.JTextField txtNim;
     // End of variables declaration//GEN-END:variables
-    private void clear(){
-        txtNIM.setText("");
+
+    private void clear() {
+        txtNim.setText("");
         txtNama.setText("");
         txtAlamat.setText("");
         txtNilaiTugas.setText("");
         txtNilaiHuruf.setText("");
-        txtNilaiuas.setText("");
-        txtNilaiuts.setText("");
+        txtNilaiUas.setText("");
+        txtNilaiUts.setText("");
         txtNilaiAngka.setText("");
+    }
+    
+    public void tampilData() {
+        MahasiswaNilai[] data = controller.getAll();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        for (MahasiswaNilai mhs : data) {
+            Object[] row = {
+                mhs.getNim(),
+                mhs.getNama(),
+                mhs.getTugas(),
+                mhs.getUts(),
+                mhs.getUas(),
+                mhs.getNilaiAngka(),
+                mhs.getNilaiHuruf()
+            };
+            model.addRow(row); 
+        }
+    }
+    
+    public void tampilForm(String nim) {
+        MahasiswaNilai mhs = controller.getByNim(nim);
+        if(mhs!= null) {
+        txtNim.setText(mhs.getNim());
+        txtNama.setText(mhs.getNama());
+        txtAlamat.setText(mhs.getAlamat());
+        txtNilaiTugas.setText(String.valueOf(mhs.getTugas()));
+        txtNilaiUts.setText(String.valueOf(mhs.getUts()));
+        txtNilaiUas.setText(String.valueOf(mhs.getUas()));
+        txtNilaiAngka.setText(String.valueOf(mhs.getNilaiAngka()));
+        txtNilaiHuruf.setText(mhs.getNilaiHuruf());
+        } else {
+            JOptionPane.showMessageDialog(this, "Mahasiswa Tidak ada");
+        }
     }
 }

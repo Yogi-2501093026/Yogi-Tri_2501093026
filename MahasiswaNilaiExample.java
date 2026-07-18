@@ -1,30 +1,33 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
-package juni182026;
+package juli;
+
+//import juli.MahasiswaNilai;
 
 /**
  *
- * @author LAB-SI-PC
+ * @author LABSIDOSEN
  */
-public class MahasiswaNilaiExample {
-    public static void main(String[] args){
+public class MahasiswaNilaiExample extends MahasiswaNilai {
+
+    public static void main(String[] args) {
         MahasiswaNilai m = new MahasiswaNilai();
-        m.setNIM("2401001");
+        m.setNim("2401001");
         m.setNama("Ali");
         m.setAlamat("Padang");
-        m.setTugas(80);
-        m.setUas(80);
-        m.setUts(70);
-        
-        System.out.println(m.getNIM());
-        System.out.println(m.getNama());
-        System.out.println(m.getAlamat());
-        System.out.println(m.getTugas());
-        System.out.println(m.getUts());
-        System.out.println(m.getUas());
-        System.out.println(m.getNilaiAngka());
-        System.out.println(m.getNilaiHuruf());
+        m.setTugas(80.0);
+        m.setUts(70.0);
+        m.setUas(80.0);
+        System.out.println("Nim     :" + m.getNim());
+        System.out.println("Nama     :" + m.getNama());
+        System.out.println("Tugas    :" + m.getTugas());
+        System.out.println("UTS    :" + m.getUts());
+        System.out.println("UAS    :" + m.getUas());
+        System.out.println("Nilai Angka    :" + m.getNilaiAngka());
+        System.out.println("Nilai Huruf    :" + m.getNilaiHuruf());
+
     }
 }
